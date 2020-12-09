@@ -459,13 +459,13 @@ export const Search = ({ small = false }) => {
           )}
           {filteredPairList &&
             filteredPairList.slice(0, pairsShown).map((pair) => {
-              if (pair?.token0?.id === '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2') {
-                pair.token0.name = 'ETH (Wrapped)'
-                pair.token0.symbol = 'ETH'
+              if (pair?.token0?.id === '0x2b309226500ADc5956a422950A2AD6E6333Bb315') {
+                pair.token0.name = 'EIDI (Wrapped)'
+                pair.token0.symbol = 'WEIDI'
               }
-              if (pair?.token1.id === '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2') {
-                pair.token1.name = 'ETH (Wrapped)'
-                pair.token1.symbol = 'ETH'
+              if (pair?.token1.id === '0x2b309226500ADc5956a422950A2AD6E6333Bb315') {
+                pair.token1.name = 'EIDI (Wrapped)'
+                pair.token1.symbol = 'WETH'
               }
               return (
                 <BasicLink to={'/pair/' + pair.id} key={pair.id} onClick={onDismiss}>

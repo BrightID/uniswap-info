@@ -42,14 +42,14 @@ export function getPoolLink(token0Address, token1Address = null, remove = false)
     return (
       `https://uniswap.exchange/` +
       (remove ? `remove` : `add`) +
-      `/${token0Address === '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2' ? 'ETH' : token0Address}/${'ETH'}`
+      `/${token0Address === '0x2b309226500ADc5956a422950A2AD6E6333Bb315' ? 'EIDI' : token0Address}/${'EIDI'}`
     )
   } else {
     return (
       `https://uniswap.exchange/` +
       (remove ? `remove` : `add`) +
-      `/${token0Address === '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2' ? 'ETH' : token0Address}/${
-        token1Address === '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2' ? 'ETH' : token1Address
+      `/${token0Address === '0x2b309226500ADc5956a422950A2AD6E6333Bb315' ? 'EIDI' : token0Address}/${
+        token1Address === '0x2b309226500ADc5956a422950A2AD6E6333Bb315' ? 'EIDI' : token1Address
       }`
     )
   }
@@ -60,8 +60,8 @@ export function getSwapLink(token0Address, token1Address = null) {
     return `https://uniswap.exchange/swap?inputCurrency=${token0Address}`
   } else {
     return `https://uniswap.exchange/swap?inputCurrency=${
-      token0Address === '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2' ? 'ETH' : token0Address
-    }&outputCurrency=${token1Address === '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2' ? 'ETH' : token1Address}`
+      token0Address === '0x2b309226500ADc5956a422950A2AD6E6333Bb315' ? 'EIDI' : token0Address
+    }&outputCurrency=${token1Address === '0x2b309226500ADc5956a422950A2AD6E6333Bb315' ? 'EIDI' : token1Address}`
   }
 }
 

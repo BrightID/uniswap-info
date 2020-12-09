@@ -156,7 +156,7 @@ function AccountPage({ account }) {
         <RowBetween>
           <TYPE.body>
             <BasicLink to="/accounts">{'Accounts '}</BasicLink>→{' '}
-            <Link lineHeight={'145.23%'} href={'https://etherscan.io/address/' + account} target="_blank">
+            <Link lineHeight={'145.23%'} href={'https://explorer.idchain.one/' + account} target="_blank">
               {' '}
               {account?.slice(0, 42)}{' '}
             </Link>
@@ -167,8 +167,8 @@ function AccountPage({ account }) {
           <RowBetween>
             <span>
               <TYPE.header fontSize={24}>{account?.slice(0, 6) + '...' + account?.slice(38, 42)}</TYPE.header>
-              <Link lineHeight={'145.23%'} href={'https://etherscan.io/address/' + account} target="_blank">
-                <TYPE.main fontSize={14}>View on Etherscan</TYPE.main>
+              <Link lineHeight={'145.23%'} href={'https://explorer.idchain.one/' + account} target="_blank">
+                <TYPE.main fontSize={14}>View on IDChain Explorer</TYPE.main>
               </Link>
             </span>
             <AccountWrapper>
@@ -205,10 +205,10 @@ function AccountPage({ account }) {
                   <AutoColumn gap="0px">
                     {positions?.map((p, i) => {
                       if (p.pair.token1.symbol === 'WETH') {
-                        p.pair.token1.symbol = 'ETH'
+                        p.pair.token1.symbol = 'EIDI'
                       }
                       if (p.pair.token0.symbol === 'WETH') {
-                        p.pair.token0.symbol = 'ETH'
+                        p.pair.token0.symbol = 'EIDI'
                       }
                       return (
                         p.pair.id !== activePosition?.pair.id && (

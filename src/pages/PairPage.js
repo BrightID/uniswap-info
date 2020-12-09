@@ -477,8 +477,8 @@ function PairPage({ pairAddress, history }) {
                     </AutoRow>
                   </Column>
                   <ButtonLight color={backgroundColor}>
-                    <Link color={backgroundColor} external href={'https://etherscan.io/address/' + pairAddress}>
-                      View on Etherscan ↗
+                    <Link color={backgroundColor} external href={'https://explorer.idchain.one/' + pairAddress}>
+                      View on IDChain Explorer ↗
                     </Link>
                   </ButtonLight>
                 </TokenDetailsLayout>

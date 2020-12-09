@@ -13,8 +13,10 @@ const UPDATE_SESSION_START = 'UPDATE_SESSION_START'
 const UPDATED_SUPPORTED_TOKENS = 'UPDATED_SUPPORTED_TOKENS'
 const UPDATE_LATEST_BLOCK = 'UPDATE_LATEST_BLOCK'
 const UPDATE_HEAD_BLOCK = 'UPDATE_HEAD_BLOCK'
+const UPDATED_SUPPORTED_TOKENS_MAP = 'UPDATED_SUPPORTED_TOKENS_MAP'
 
 const SUPPORTED_TOKENS = 'SUPPORTED_TOKENS'
+const SUPPORTED_TOKENS_MAP = 'SUPPORTED_TOKENS_MAP'
 const TIME_KEY = 'TIME_KEY'
 const CURRENCY = 'CURRENCY'
 const SESSION_START = 'SESSION_START'
@@ -75,6 +77,14 @@ function reducer(state, { type, payload }) {
       }
     }
 
+    case UPDATED_SUPPORTED_TOKENS_MAP: {
+      const { supportedTokens } = payload
+      return {
+        ...state,
+        [SUPPORTED_TOKENS_MAP]: supportedTokens,
+      }
+    }
+
     default: {
       throw Error(`Unexpected action type in DataContext reducer: '${type}'.`)
     }
@@ -84,8 +94,10 @@ function reducer(state, { type, payload }) {
 const INITIAL_STATE = {
   CURRENCY: 'USD',
   TIME_KEY: timeframeOptions.ALL_TIME,
+  [SUPPORTED_TOKENS_MAP]: {},
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function Provider({ children }) {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE)
   const update = useCallback((currency) => {
@@ -93,6 +105,15 @@ export default function Provider({ children }) {
       type: UPDATE,
       payload: {
         currency,
+      },
+    })
+  }, [])
+
+  const updateSupportedTokensMap = useCallback((supportedTokens) => {
+    dispatch({
+      type: UPDATED_SUPPORTED_TOKENS_MAP,
+      payload: {
+        supportedTokens,
       },
     })
   }, [])
@@ -156,9 +177,19 @@ export default function Provider({ children }) {
             updateSupportedTokens,
             updateLatestBlock,
             updateHeadBlock,
+            updateSupportedTokensMap,
           },
         ],
-        [state, update, updateTimeframe, updateSessionStart, updateSupportedTokens, updateLatestBlock, updateHeadBlock]
+        [
+          state,
+          update,
+          updateTimeframe,
+          updateSessionStart,
+          updateSupportedTokens,
+          updateLatestBlock,
+          updateHeadBlock,
+          updateSupportedTokensMap,
+        ]
       )}
     >
       {children}
@@ -199,10 +230,10 @@ export function useLatestBlocks() {
 export function useCurrentCurrency() {
   const [state, { update }] = useApplicationContext()
   const toggleCurrency = useCallback(() => {
-    if (state.currency === 'ETH') {
+    if (state.currency === 'EIDI') {
       update('USD')
     } else {
-      update('ETH')
+      update('EIDI')
     }
   }, [state, update])
   return [state[CURRENCY], toggleCurrency]
@@ -279,6 +310,32 @@ export function useListedTokens() {
       fetchList()
     }
   }, [updateSupportedTokens, supportedTokens])
+
+  return supportedTokens
+}
+
+export function useListedTokensMap() {
+  const [state, { updateSupportedTokensMap }] = useApplicationContext()
+  const supportedTokens = state?.[SUPPORTED_TOKENS_MAP]
+
+  useEffect(() => {
+    async function fetchList() {
+      const allFetched = await SUPPORTED_LIST_URLS__NO_ENS.reduce(async (fetchedTokens, url) => {
+        const tokensSoFar = await fetchedTokens
+        const newTokens = await getTokenList(url)
+        return Promise.resolve([...tokensSoFar, ...newTokens.tokens])
+      }, Promise.resolve([]))
+
+      const formatted = {}
+      for (const token of allFetched) {
+        formatted[token.address.toLowerCase()] = token
+      }
+      updateSupportedTokensMap(formatted)
+    }
+    if (Object.keys(supportedTokens).length === 0) {
+      fetchList()
+    }
+  }, [updateSupportedTokensMap, supportedTokens])
 
   return supportedTokens
 }
