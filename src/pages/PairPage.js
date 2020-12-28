@@ -477,7 +477,7 @@ function PairPage({ pairAddress, history }) {
                     </AutoRow>
                   </Column>
                   <ButtonLight color={backgroundColor}>
-                    <Link color={backgroundColor} external href={'https://explorer.idchain.one/' + pairAddress}>
+                    <Link color={backgroundColor} external href={'https://explorer.idchain.one/address/' + pairAddress}>
                       View on IDChain Explorer ↗
                     </Link>
                   </ButtonLight>
