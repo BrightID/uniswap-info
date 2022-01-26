@@ -6,7 +6,7 @@ const Attribution = () => (
       Github
     </a>{' '}
     |{' '}
-    <a href="http://uniswap.idchain.one/" rel="noopener noreferrer" target="_blank">
+    <a href="http://swap.idchain.one/" rel="noopener noreferrer" target="_blank">
       Uniswap on IDChain
     </a>{' '}
     |{' '}

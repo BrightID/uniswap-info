@@ -40,13 +40,13 @@ export function getTimeframe(timeWindow) {
 export function getPoolLink(token0Address, token1Address = null, remove = false) {
   if (!token1Address) {
     return (
-      `https://uniswap.idchain.one/` +
+      `https://swap.idchain.one/` +
       (remove ? `remove` : `add`) +
       `/${token0Address === '0x2b309226500ADc5956a422950A2AD6E6333Bb315' ? 'EIDI' : token0Address}/${'EIDI'}`
     )
   } else {
     return (
-      `https://uniswap.idchain.one/` +
+      `https://swap.idchain.one/` +
       (remove ? `remove` : `add`) +
       `/${token0Address === '0x2b309226500ADc5956a422950A2AD6E6333Bb315' ? 'EIDI' : token0Address}/${
         token1Address === '0x2b309226500ADc5956a422950A2AD6E6333Bb315' ? 'EIDI' : token1Address
@@ -57,9 +57,9 @@ export function getPoolLink(token0Address, token1Address = null, remove = false)
 
 export function getSwapLink(token0Address, token1Address = null) {
   if (!token1Address) {
-    return `https://uniswap.idchain.one/swap?inputCurrency=${token0Address}`
+    return `https://swap.idchain.one/swap?inputCurrency=${token0Address}`
   } else {
-    return `https://uniswap.idchain.one/swap?inputCurrency=${
+    return `https://swap.idchain.one/swap?inputCurrency=${
       token0Address === '0x2b309226500ADc5956a422950A2AD6E6333Bb315' ? 'EIDI' : token0Address
     }&outputCurrency=${token1Address === '0x2b309226500ADc5956a422950A2AD6E6333Bb315' ? 'EIDI' : token1Address}`
   }
