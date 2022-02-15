@@ -40,13 +40,13 @@ export function getTimeframe(timeWindow) {
 export function getPoolLink(token0Address, token1Address = null, remove = false) {
   if (!token1Address) {
     return (
-      `https://swap.idchain.one/` +
+      `https://swap.idchain.one/#/` +
       (remove ? `remove` : `add`) +
       `/${token0Address === '0x2b309226500ADc5956a422950A2AD6E6333Bb315' ? 'EIDI' : token0Address}/${'EIDI'}`
     )
   } else {
     return (
-      `https://swap.idchain.one/` +
+      `https://swap.idchain.one/#/` +
       (remove ? `remove` : `add`) +
       `/${token0Address === '0x2b309226500ADc5956a422950A2AD6E6333Bb315' ? 'EIDI' : token0Address}/${
         token1Address === '0x2b309226500ADc5956a422950A2AD6E6333Bb315' ? 'EIDI' : token1Address
