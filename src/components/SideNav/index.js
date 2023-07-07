@@ -113,6 +113,7 @@ function SideNav({ history }) {
       {!below1080 ? (
         <DesktopWrapper>
           <AutoColumn gap="1rem" style={{ marginLeft: '.75rem', marginTop: '1.5rem' }}>
+            <Title />
             {!below1080 && (
               <AutoColumn gap="1.25rem" style={{ marginTop: '1rem' }}>
                 <BasicLink to="/home">
@@ -202,6 +203,7 @@ function SideNav({ history }) {
         </DesktopWrapper>
       ) : (
         <MobileWrapper>
+          <Title />
         </MobileWrapper>
       )}
     </Wrapper>

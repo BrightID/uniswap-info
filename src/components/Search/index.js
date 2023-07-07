@@ -165,9 +165,7 @@ export const Search = ({ small = false }) => {
   useTokenData(value)
   usePairData(value)
 
-  const below700 = useMedia('(max-width: 700px)')
   const below470 = useMedia('(max-width: 470px)')
-  const below410 = useMedia('(max-width: 410px)')
 
   useEffect(() => {
     if (value !== '') {
@@ -427,13 +425,9 @@ export const Search = ({ small = false }) => {
           placeholder={
             small
               ? ''
-              : below410
-              ? 'Search...'
               : below470
-              ? 'Search Uniswap...'
-              : below700
-              ? 'Search pairs and tokens...'
-              : 'Search Uniswap pairs and tokens...'
+              ? 'Search...'
+              : 'Search pairs and tokens...'
           }
           value={value}
           onChange={(e) => {
